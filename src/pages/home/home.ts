@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { FirstPage } from '../first/first';
+import { LoginPage } from '../login/login';
+import { RegisterPage } from '../register/register';
 
 @Component({
   selector: 'page-home',
@@ -19,16 +21,13 @@ export class HomePage {
     this.navCtrl.push(FirstPage);
     
   }
+  
   signIn(){
-      console.log(this.username.value, this.password.value);
-      if(this.username.value == "admin" && this.password.value){
-        let alert = this.alertCtrl.create({
-          title: 'Login Succeful',
-          subTitle: 'Congrats',
-          buttons: ['OK']
-        });
-        alert.present();
+      this.navCtrl.push(LoginPage);
       }
+
+  register(){
+    this.navCtrl.push(RegisterPage);
   }
 
 }
