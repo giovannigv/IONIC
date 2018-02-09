@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 /**
@@ -19,22 +19,33 @@ export class RegisterPage {
   @ViewChild('username') user;
   @ViewChild('password') password;
 
-  constructor(public navCtrl: NavController, private fire: AngularFireAuth, public navParams: NavParams) {
+  constructor(private alertCtrl: AlertController, public navCtrl: NavController, private fire: AngularFireAuth, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
   }
 
+  alert(message: string){
+    this.alertCtrl.create({
+      title:'Info',
+      subTitle: message,
+      buttons:['OK']
+    }).present();
+  }
+
   registerUser(){
-    this.fire.auth.createUserWithEmailAndPassword(this.user.value, this.password.value)
+    this.fire.auth.createUserWithEmailAndPassword(this.user.value + '@domain.xta', this.password.value)
     .then(data => {
-      console.log('got data ', data);
+      this.alert('Registered!');
+      //console.log('got data ', data);
     })
     .catch(error => {
-      console.log('got an error', error);
+      this.alert(error.message);
+      
+      //console.log('got an error', error);
     })
-    console.log('Deveria registrar',this.user.value, this.password.value);
+    //console.log('Deveria registrar',this.user.value, this.password.value);
   }
 
 }

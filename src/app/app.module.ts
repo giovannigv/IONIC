@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { FirstPage } from '../pages/first/first';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { LoggedinPage } from '../pages/loggedin/loggedin';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 
@@ -25,10 +26,11 @@ const firebaseAuth = {
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     FirstPage,
+    HomePage,
+    LoginPage,
     RegisterPage,
-    LoginPage
+    LoggedinPage
   ],
   imports: [
     BrowserModule,
@@ -40,9 +42,10 @@ const firebaseAuth = {
   entryComponents: [
     MyApp,
     HomePage,
-    FirstPage,
+    LoginPage,
     RegisterPage,
-    LoginPage
+    LoggedinPage,
+    FirstPage
   ],
   providers: [
     StatusBar,
